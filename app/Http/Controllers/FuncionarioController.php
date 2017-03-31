@@ -18,6 +18,7 @@ class FuncionarioController extends Controller
       public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('AcessControl');
     }
 
     public function index()
@@ -32,6 +33,29 @@ class FuncionarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function autocomplete(Request $request){
+        $term=$request->term;
+        $data= User::where('name','LIKE','%'.$term.'%')
+        ->take(10)
+        ->get();
+        $results=array();
+        foreach ($data as $key => $value) {
+            $results[]=['id'=>$value->id,'value'=>$value->name];
+        }
+        return Response()->json($results);
+    }
+
+   public function search(Request $request){
+        if($request->ajax()){
+            $term=$request->search;
+            $users= DB::table('users')->where('name','LIKE','%'.$term.'%')->paginate(5);
+            return View::make('funcionarios.search', compact('users'));
+
+        }
+    }
+
+
     public function create()
     {
         //

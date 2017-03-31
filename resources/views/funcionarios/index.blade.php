@@ -1,13 +1,16 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/      jquery.ui.css">
+ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">Usuários</div>
                 <div class="panel-body">
-
+                <input type="text" name="searchname" class="form-control" id="searchname" placeholder="Buscar Usuário">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered user">
                             <thead>
@@ -44,16 +47,24 @@
                                    {{ $users->links() }}
                             </tbody>
                        </table>
-
                     </div>
-                          <!-- Modal -->
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+   $(function()
+    {
+     $("#searchname").autocomplete({
+      source: "search/autocomplete",
+      minLength: 3,
+      select: function(event, ui) {
+        $('#q').val(ui.item.value);
+      }
+    });
+});
 @endsection
 
 

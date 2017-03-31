@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery.ui.css">
 
     <!-- Scripts -->
     <script>
@@ -19,6 +20,18 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+      <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/topo.css" rel="stylesheet">
+    <link href="/css/rodape.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dataTables/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/css/dataTables/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="/css/grid/grid.css">
+    <link rel="stylesheet" href="/css/crud/crud.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/
+    <script src="//code.jquery.com/jquery/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
 <body>
     <div id="app">
@@ -83,5 +96,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+</script>
+
+
 </body>
 </html>
