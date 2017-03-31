@@ -9,13 +9,24 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+     public static function getRoles(){
+        $roles = [
+            'admin' => 'Administrador',
+            'user'  =>'Usuario',
+
+        ];
+        return $roles;
+
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','perfil'
     ];
 
     /**

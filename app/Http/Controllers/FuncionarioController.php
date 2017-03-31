@@ -6,6 +6,8 @@ use App\Funcionario;
 use Illuminate\Http\Request;
 use DB;
 use View;
+use App\User;
+use Redirect;
 class FuncionarioController extends Controller
 {
     /**
@@ -63,9 +65,19 @@ class FuncionarioController extends Controller
      * @param  \App\Funcionario  $funcionario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Funcionario $funcionario)
+    public function edit($id)
     {
-        //
+          $users = User::find($id);
+            if (is_null($users)){
+                ?>
+                <script>alert('Usuário Está Desabilitado')</script>
+                <?php
+
+                return Redirect::route('funcionarios.index');
+            }
+
+
+            return view('funcionarios.edit', compact('users'));
     }
 
     /**
@@ -75,9 +87,20 @@ class FuncionarioController extends Controller
      * @param  \App\Funcionario  $funcionario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Funcionario $funcionario)
+    public function update(Request $request, $id)
     {
-        //
+         $users = User::find($id);
+         //dd($users);
+
+            $users->name = $request->name;
+            if(!empty($request->password)){
+                $users->password = bcrypt($request->password);
+            }
+            $users->email = $request->email;
+            $users->perfil = $request->perfil;
+            $users->save();
+
+            return Redirect::route('funcionarios.index');
     }
 
     /**
